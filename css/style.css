@@ -1863,6 +1863,7 @@ html.lenis body {
 }
 .casting-left-item img {
     border-radius: 10px;
+    width: 100%;
 }
 .casting-left-item h3 {
     font-size: 24px;
@@ -1885,25 +1886,25 @@ html.lenis body {
     padding: 100px 0 90px;
     overflow: hidden;
 }
-
+ 
 .process-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 50px;
 }
-
+ 
 .process-section .title {
     color: var(--white-color);
     line-height: 1.2;
 }
-
+ 
 /* arrows */
 .process-nav {
     display: flex;
     gap: 24px;
 }
-
+ 
 .process-nav button {
     width: 52px;
     height: 52px;
@@ -1916,49 +1917,49 @@ html.lenis body {
     cursor: pointer;
     transition: border-color 0.3s ease;
 }
-
+ 
 .process-nav button svg {
     width: 22px;
     height: 22px;
 }
-
+ 
 .process-nav button svg path {
     fill: none;
     stroke: var(--white-color);
     stroke-width: 1.2;
     transition: stroke 0.3s ease;
 }
-
+ 
 .process-nav button:hover {
     border-color: var(--primary-color);
 }
-
+ 
 .process-nav button:hover svg path {
     stroke: var(--primary-color);
 }
-
+ 
 .process-nav button.slick-disabled {
     opacity: 0.35;
     pointer-events: none;
 }
-
+ 
 /* slider */
 .process-slider:not(.slick-initialized) {
     display: flex;
     overflow: hidden;
     padding-left: max(15px, calc((100% - 1550px) / 2 + 15px));
 }
-
+ 
 .process-slider .slick-list {
     padding-left: max(15px, calc((100% - 1550px) / 2 + 15px));
 }
-
+ 
 .process-slide {
     position: relative;
     width: calc(357px + 32px);
     height: calc(86px * 2 + 100px + 411px);
 }
-
+ 
 .process-card {
     position: absolute;
     top: 86px;
@@ -1972,21 +1973,22 @@ html.lenis body {
     border: 1px solid #B3B3B3;
     border-radius: 12px;
 }
-
+ 
 .process-slide.is-low .process-card {
     top: calc(86px + 100px);
 }
-
+ 
 .process-num {
     font-size: 32px;
     font-weight: 400;
     color: var(--white-color);
+    transition: color 0.4s ease;
 }
-
+ 
 .process-card-body {
     margin-top: auto;
 }
-
+ 
 .process-card h3 {
     margin: 0 0 18px;
     font-size: 22px;
@@ -1995,13 +1997,13 @@ html.lenis body {
     text-transform: uppercase;
     color: var(--white-color);
 }
-
+ 
 .process-card p {
     font-size: 18px;
     line-height: 26px;
     color: #ddd;
 }
-
+ 
 /* dashed connectors */
 .process-link {
     position: absolute;
@@ -2009,43 +2011,122 @@ html.lenis body {
     width: calc(357px + 32px);
     pointer-events: none;
 }
-
+ 
 .process-link::after {
     content: "";
     position: absolute;
     right: 0;
     height: 37px;
     border-right: 1px dashed #B3B3B3;
+    transition: border-color 0.3s ease;
 }
-
+ 
 .process-slide:not(.is-low) .process-link {
     top: calc(86px + 411px + 37px);
-    height: calc(
-        (86px * 2 + 100px + 411px) - 14px - 86px - 411px - 37px
-    );
+    height: calc((86px * 2 + 100px + 411px) - 14px - 86px - 411px - 37px);
     border-left: 1px dashed #B3B3B3;
     border-bottom: 1px dashed #B3B3B3;
     border-radius: 0 0 6px 6px;
-    overflow: hidden;
 }
-
+ 
 .process-slide:not(.is-low) .process-link::after {
     bottom: 0;
 }
-
+ 
 .process-slide.is-low .process-link {
     top: 14px;
     height: calc(86px + 100px - 37px - 14px);
     border-left: 1px dashed #B3B3B3;
     border-top: 1px dashed #B3B3B3;
     border-radius: 6px 6px 0 0;
-    overflow: hidden;
 }
-
+ 
 .process-slide.is-low .process-link::after {
     top: 0;
 }
+ 
+/* ===== process-link fill animation (orange) ===== */
+.process-link::before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+ 
+.process-slide:not(.is-low) .process-link::before {
+    top: 0;
+    left: -1px;
+    right: 0;
+    bottom: -1px;
+    border-left: 1px dashed var(--primary-color);
+    border-bottom: 1px dashed var(--primary-color);
+    border-radius: 0 0 6px 6px;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0, 0 100%, 0 100%);
+}
+ 
+.process-slide.is-low .process-link::before {
+    top: -1px;
+    left: -1px;
+    right: 0;
+    bottom: 0;
+    border-left: 1px dashed var(--primary-color);
+    border-top: 1px dashed var(--primary-color);
+    border-radius: 6px 6px 0 0;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%, 0 0, 0 0);
+}
+ 
+.slick-slide.is-done .process-slide:not(.is-low) .process-link::before {
+    animation: processLinkFillHigh 1.4s linear 0.2s forwards;
+}
+ 
+.slick-slide.is-done .process-slide.is-low .process-link::before {
+    animation: processLinkFillLow 1.4s linear 0.2s forwards;
+}
+ 
+.slick-slide.is-done .process-link::after {
+    border-right-color: var(--primary-color);
+    transition-delay: 1.5s;
+}
+ 
+.slick-slide.is-done .process-num {
+    color: var(--primary-color);
+}
 
+ 
+/* niche -> aadi */
+@keyframes processLinkFillHigh {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0, 0 100%, 0 100%);
+    }
+    26% {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), 0 calc(100% - 6px), 0 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), 100% calc(100% - 6px), 100% 100%, 0 100%);
+    }
+}
+ 
+/* upar -> aadi */
+@keyframes processLinkFillLow {
+    0% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%, 0 0, 0 0);
+    }
+    26% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 6px, 0 6px, 0 0, 0 0);
+    }
+    100% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 6px, 100% 6px, 100% 0, 0 0);
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    .slick-slide.is-done .process-link::before {
+        animation-duration: 0.01ms;
+        animation-delay: 0s;
+    }
+    .slick-slide.is-done .process-link::after {
+        transition-delay: 0s;
+    }
+}
 
 .useslost-wax {
     padding: 120px 0 0;
@@ -2092,7 +2173,49 @@ html.lenis body {
 /* responsive */
 @media (max-width: 1400px) {
     .process-section {
-        padding: 80px 0 70px;
+        padding: 80px 0 80px;
+    }
+    .lostwax-casting {
+        padding: 80px 0;
+    }
+    .lostwax-casting .title-area p {
+        font-size: 26px;
+        line-height: 36px;
+    }
+    .useslost-wax {
+        padding: 80px 0 0;
+    }
+}
+
+@media (max-width: 1300px) {
+    .casting-left-item {
+        width: 42%;
+    }
+    .useslost-wax-content {
+        padding: 0 30px 0 20px;
+    }
+    .useslost-wax-content .title {
+        margin: 0 0 50px;
+    }   
+    .advantages-head {
+        margin: 0 0 50px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .lostwax-casting .title-area p {
+        font-size: 22px;
+        line-height: 32px;
+    }
+    .casting-left-item h3 {
+        top: 20px;
+        left: 20px;
+    }
+    .lostwax-casting-area {
+        margin: 50px 0 0;
+    }
+    .useslost-wax-content .title {
+        margin: 0 0 30px;
     }
 }
 
@@ -2100,103 +2223,245 @@ html.lenis body {
     .process-section {
         padding: 50px 0;
     }
-
+ 
     .process-head {
         margin-bottom: 20px;
     }
-
+ 
     .process-nav {
         gap: 12px;
     }
-
+ 
     .process-nav button {
         width: 44px;
         height: 44px;
     }
-
+ 
     .process-slide {
         width: calc(300px + 24px);
         height: calc(50px * 2 + 70px + 380px);
     }
-
+ 
     .process-card {
         width: 300px;
         height: 380px;
         padding: 24px 24px 30px;
     }
-
+ 
     .process-slide.is-low .process-card {
         top: calc(50px + 70px);
     }
-
+ 
     .process-num {
         font-size: 24px;
         line-height: 30px;
     }
-
+ 
     .process-card h3 {
         font-size: 18px;
         line-height: 26px;
         margin-bottom: 12px;
     }
-
+ 
     .process-card p {
         font-size: 16px;
         line-height: 22px;
     }
-
+ 
     .process-link {
         left: calc(300px / 2);
         width: calc(300px + 24px);
     }
-
+ 
     .process-link::after {
         height: 26px;
     }
-
+ 
     .process-slide:not(.is-low) .process-link {
         top: calc(50px + 380px + 26px);
-        height: calc(
-            (50px * 2 + 70px + 380px) - 14px - 50px - 380px - 26px
-        );
+        height: calc((50px * 2 + 70px + 380px) - 14px - 50px - 380px - 26px);
     }
-
+ 
     .process-slide.is-low .process-link {
         top: 14px;
         height: calc(50px + 70px - 26px - 14px);
     }
+    .lostwax-casting {
+        padding: 50px 0;
+    }
+    .lostwax-casting .title-area > div:first-child {
+        width: 100%;
+    }
+    .lostwax-casting .title-area > div:last-child {
+        width: 100%;
+    }
+    .lostwax-casting-area {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .casting-left {
+        width: 100%;
+    }
+    .lostwax-casting-content {
+        width: 100%;
+    }
+    .useslost-wax {
+        padding: 50px 0 0;
+    }
+    .useslost-wax-box {
+        flex-direction: column-reverse;
+        row-gap: 30px;
+    }
+    .useslost-wax-content {
+        padding: 0;
+        width: 100%;
+    }
+    .useslost-wax-image {
+        width: 100%;
+    }
+    .useslost-wax-content .title {
+        margin: 0 0 20px;
+    }
+    .advantages-head {
+        margin: 0 0 30px;
+    }
 }
 
+@media (max-width: 767px) {
+    .lostwax-casting-area {
+        margin: 20px 0 0;
+    }
+    .casting-left {
+        gap: 20px;
+    }
+    .casting-left-item {
+        width: 46%;
+    }
+    .lostwax-casting-content .title {
+        margin: 0 0 20px;
+    }
+    .lostwax-casting .title-area p {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+ 
 @media (max-width: 575px) {
     .process-slide {
         width: calc(270px + 20px);
         height: calc(50px * 2 + 70px + 410px);
     }
-
+ 
     .process-card {
         width: 270px;
         height: 410px;
     }
-
+ 
     .process-slide.is-low .process-card {
         top: calc(50px + 70px);
     }
-
+ 
     .process-link {
         left: calc(270px / 2);
         width: calc(270px + 20px);
     }
-
+ 
     .process-slide:not(.is-low) .process-link {
         top: calc(50px + 410px + 26px);
-        height: calc(
-            (50px * 2 + 70px + 410px) - 14px - 50px - 410px - 26px
-        );
+        height: calc((50px * 2 + 70px + 410px) - 14px - 50px - 410px - 26px);
     }
-
+ 
     .process-slide.is-low .process-link {
         height: calc(50px + 70px - 26px - 14px);
     }
 }
 
 /* Our Process Page Css End */
+
+
+/* Industries Section Page Css Start */
+.industries-section {
+    padding: 120px 0 120px;
+}
+.industries-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.industries-item {
+    width: calc((100% - 60px) / 3);
+    background: #F0F0F0;
+    border-radius: 8px;
+    padding: 40px 22px 40px 40px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 346px;
+}
+.industries-name span {
+    font-size: 20px;
+    color: #747474;
+    font-weight: 400;
+}
+.industries-name h3 {
+    font-size: 24px;
+    color: var(--black-color);
+    font-weight: 500;
+    margin: 14px 0 0;
+    flex: 1;
+}
+.border-line {
+    height: 1px;
+    min-width: 160px;
+    background: #B3B3B3;
+}
+.industries-name {
+    display: flex;
+    flex-direction: column;
+}
+.industries-item .industries-name {
+    width: 40%;
+}
+.industries-item .industries-image {
+    width: 45%;
+}
+.industries-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 1400px) {
+    .industries-section {
+        padding: 80px 0 80px;
+    }
+}
+@media (max-width: 1100px) {
+    .industries-item {
+        padding: 30px 22px 30px 30px;
+        min-height: 252px;
+    }
+    .industries-name h3 {
+        font-size: 20px;
+    }
+}
+@media (max-width: 991px) {
+    .industries-section {
+        padding: 50px 0 50px;
+    }
+    .industries-item {
+        width: calc((100% - 30px) / 2);
+        min-height: 270px;
+    }
+}
+@media (max-width: 767px) {
+    .industries-area {
+        gap: 20px;
+    }
+    .industries-item {
+        width: 100%;
+        min-height: auto;
+        padding: 20px 20px 20px 20px;
+    }
+}
+
+/* Industries Section Page Css End */

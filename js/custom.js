@@ -251,7 +251,7 @@ window.addEventListener('load', function () {
 //   < === Calisto text animation (only about page) === >
 (function () {
   var el = document.getElementById('calisto-text');
-  if (!el) return;                                   // <-- guard
+  if (!el) return;
  
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -291,8 +291,50 @@ window.addEventListener('load', function () {
 //   < === Process slider (slick) === >
 $(function () {
   var $slider = $('.process-slider');
+  var $section = $('.process-section');
   if (!$slider.length) return;
- 
+
+  /* ---------- 1) Fill: section top window top ma aave tyare, perfect dekhata slides nu j ---------- */
+  var started = false;
+  var queue = [];
+  var busy = false;
+
+  function runQueue() {
+    if (busy || !queue.length) return;
+    busy = true;
+    queue.shift().addClass('is-done');
+    setTimeout(function () { busy = false; runQueue(); }, 1400);   // 1 link fill thay pachi next (sequence)
+  }
+
+  function updateFill() {
+    var rect = $section[0].getBoundingClientRect();
+    if (!started) {
+      if (rect.top > 0 || rect.bottom <= 0) return;                 // section top window top sudhi nathi pahoncho
+      started = true;
+    }
+    var vw = document.documentElement.clientWidth;
+    $slider.find('.slick-slide').each(function () {
+      var $s = $(this);
+      if ($s.hasClass('is-done') || $s.data('queued')) return;
+      var r = $s.find('.process-card')[0].getBoundingClientRect();
+      if (r.left >= -1 && r.right <= vw + 1) {                      // card window ma puro dekhay che
+        $s.data('queued', true);
+        queue.push($s);
+      }
+    });
+    runQueue();
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; updateFill(); });
+  }, { passive: true });
+
+  $slider.on('init reInit afterChange', updateFill);
+
+  /* ---------- 2) Slider init ---------- */
   $slider.slick({
     variableWidth: true,
     infinite: false,
@@ -304,5 +346,67 @@ $(function () {
     dots: false,
     speed: 400,
     swipeToSlide: true
+  });
+
+  /* ---------- 3) Last card container ni right edge ae aave tyare stop + Next disabled ---------- */
+  var slick = $slider.slick('getSlick');
+
+  function limits() {
+    var list = $slider.find('.slick-list')[0];
+    var $slides = $slider.find('.slick-slide');
+    if (!list || !$slides.length) return null;
+
+    var edge = parseFloat(getComputedStyle(list).paddingLeft) || 0;       // container left edge
+    var visible = list.clientWidth - edge * 2;                             // container content width
+    var last = $slides[$slides.length - 1];
+    var cardW = $(last).find('.process-card').outerWidth();
+    var maxScroll = Math.max(0, last.offsetLeft + cardW - visible);        // last card right = container right
+
+    var kMax = 0;
+    if (maxScroll > 0) {
+      $slides.each(function (i) {
+        if (this.offsetLeft + 50 >= maxScroll) { kMax = i; return false; }
+      });
+    }
+    return { maxScroll: maxScroll, kMax: kMax };
+  }
+
+  var getLeft = slick.getLeft;
+  slick.getLeft = function (index) {
+    var m = limits();
+    if (m && m.kMax > 0 && index >= m.kMax) return -m.maxScroll;           // last step exact right edge par
+    return getLeft.call(this, index);
+  };
+
+  var slideHandler = slick.slideHandler;
+  slick.slideHandler = function (index, sync, dontAnimate) {
+    var m = limits();
+    if (m && index > m.kMax) index = m.kMax;                               // aagal na jay
+    return slideHandler.call(this, index, sync, dontAnimate);
+  };
+
+  var updateArrows = slick.updateArrows;
+  slick.updateArrows = function () {
+    updateArrows.call(this);
+    var m = limits();
+    if (m && this.$nextArrow && this.currentSlide >= m.kMax) {
+      this.$nextArrow.addClass('slick-disabled').attr('aria-disabled', 'true');
+    }
+  };
+
+  slick.setPosition();
+  slick.updateArrows();
+  updateFill();
+
+  var rt;
+  $(window).on('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () {
+      var m = limits();
+      if (m && slick.currentSlide > m.kMax) slick.slickGoTo(m.kMax, true);
+      slick.setPosition();
+      slick.updateArrows();
+      updateFill();
+    }, 250);
   });
 });
