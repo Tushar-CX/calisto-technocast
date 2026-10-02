@@ -1297,6 +1297,9 @@ html.lenis body {
     .footer-item:nth-child(1) p {
         padding-right: 0;
     }
+    .footer-quick-links ul {
+        min-width: 30%;
+    }
     .dream-project-box {
         align-items: flex-start;
         flex-direction: column;
@@ -2379,7 +2382,7 @@ html.lenis body {
 /* Our Process Page Css End */
 
 
-/* Industries Section Page Css Start */
+/* Industries Page Css Start */
 .industries-section {
     padding: 120px 0 120px;
 }
@@ -2464,4 +2467,111 @@ html.lenis body {
     }
 }
 
-/* Industries Section Page Css End */
+/* Industries Page Css End */
+
+
+/* Quality Standards Page Css Start */
+
+.quality-section {
+    background: #F0F0F0;
+    padding: 120px 0 120px;
+}
+.box {
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--white-color);
+    margin: 0 0 80px;
+}
+.box:last-child {
+    margin: 0;
+}
+.box h2 {
+    margin: 0;
+    background: var(--primary-color);
+    color: var(--white-color);
+    text-align: center;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 600;
+    padding: 20px;
+}
+.scroll {
+    overflow-x: auto;
+}
+.box table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+}
+.box table thead tr:first-child th {
+    background: #121212;
+    color: var(--white-color);
+    font-weight: 500;
+    border-bottom: 0;
+    border-right: 1px solid var(--white-color);
+}
+.box table thead tr:first-child th:last-child {
+    border-right: 0;
+}
+.box table th, .box table td {
+    text-align: center;
+    padding: 16px;
+    border-bottom: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    font-weight: 400;
+    color: #747474;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+}
+.box table th:last-child, .box table td:last-child {
+    border-right: 0;
+}
+.box table tbody tr:last-child td {
+    border-bottom: 0;
+}
+.box table .sub td, .box table .sub th {
+    background: #E5E5E5;
+    color: #747474;
+    border-color: #B3B3B3;
+}
+.box table .cl th {
+    padding: 20px 16px;
+}
+
+@media (max-width: 1400px) {
+    .quality-section {
+        padding: 80px 0 80px;
+    }
+    .box {
+        margin: 0 0 60px;
+    }
+}
+@media (max-width: 1200px) {
+    .box table th br {
+        display: none;
+    }
+}
+@media (max-width: 1024px) {
+    .box h2 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .box {
+        margin: 0 0 50px;
+    }
+}
+
+@media (max-width: 991px) {
+    .quality-section {
+        padding: 50px 0 50px;
+    }
+}
+@media (max-width: 767px) {
+    .box table th, .box table td {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+/* Quality Standards Page Css End */
