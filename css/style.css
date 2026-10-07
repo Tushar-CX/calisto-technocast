@@ -3107,3 +3107,265 @@ html.lenis body {
 }
 
 /* Certificates Page Css End */
+
+
+/* Calisto Moments Page Css Start */
+.calisto-story {
+    background: #F0F0F0;
+}
+.calisto-story .melt-fidelity-box {
+    align-items: center;
+}
+.makes-calisto {
+    padding: 120px 0 120px;
+}
+.makes-calisto-box {
+    display: flex;
+}
+.makes-calisto-content {
+    width: 35%;
+}
+.makes-calisto-right {
+    width: 65%;
+    padding-left: 90px;
+}
+.makes-calisto-content .title {
+    margin: 0 0 30px;
+}
+.makes-calisto-content p {
+    margin: 20px 0 0;
+}
+.makes-calisto-image {
+    margin: 40px 0 0 0;
+}
+.makes-calisto-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+.makes-calisto-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 30px 0 30px;
+    border-bottom: 1px solid #B3B3B3;
+}
+.makes-calisto-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+.makes-calisto-item .item-num {
+    font-size: 84px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -1px;
+    color: var(--primary-color);
+    min-width: 98px;
+}
+.makes-calisto-item-content h3 {
+    font-size: 26px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin: 0 0 12px;
+}
+
+.across-different {
+    padding: 120px 0 120px;
+    background: #121212;
+}
+.across-different .title-area .title {
+    margin: 0 0 0;
+    color: var(--white-color);
+}
+.across-different .title-area p {
+    color: var(--white-color);
+}
+.across-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 100px 0 0;
+}
+.across-item {
+    text-align: center;
+    border-right: 1px solid var(--white-color);
+}
+.across-item:last-child {
+    border-right: none;
+}
+.across-item h4 {
+    margin: 24px 0 0;
+    font-size: 20px;
+    line-height: 28px; 
+    font-weight: 500;
+    color: var(--white-color);
+    text-transform: uppercase;
+    letter-spacing: -1px; 
+}
+
+.quality-mindset .title {
+    margin: 30px 0 30px;
+}
+.quality-mindset .quality-item:nth-child(3) {
+    border-bottom: 0;
+}
+.quality-mindset .quality-list {
+    margin: 30px 0 0;
+}
+.testimonial-section {
+    padding: 120px 0 120px;
+    background: var(--primary-color);
+}
+.testimonial-content {
+    text-align: center;
+}
+.quote-mark {
+    font-size: 80px;
+    line-height: .8;
+    color: var(--white-color);
+    font-family: Georgia, serif;
+}
+.testimonial-content p {
+    font-size: 40px;
+    line-height: 48px;
+    color: var(--white-color);
+    margin: 0 0 30px;
+}
+.testimonial-content small {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--white-color);
+    font-weight: 800;
+    opacity: 0.7;
+}
+
+/* Responsive Css Start */
+@media (max-width: 1400px) {
+    .melt-fidelity-content .title {
+        margin: 30px 0 30px;
+    }
+    .makes-calisto {
+        padding: 80px 0 80px;
+    }
+    .makes-calisto-right {
+        padding-left: 60px;
+    }
+    .across-different {
+        padding: 80px 0 80px;
+    }
+    .across-grid {
+        margin: 60px 0 0;
+    }
+    .across-item h4 {
+        font-size: 16px;
+    }
+    .makes-calisto-item .item-num {
+        font-size: 74px;
+    }
+    .testimonial-section {
+        padding: 80px 0 80px;
+    }   
+}
+@media (max-width: 1300px) {
+    .makes-calisto-item {
+        gap: 30px;
+    }
+    .makes-calisto-item .item-num {
+        font-size: 64px;
+        min-width: 85px;
+    }
+    .testimonial-content p {
+        font-size: 36px;
+        line-height: 44px;
+    }
+}
+@media (max-width: 1100px) {
+    .makes-calisto-right {
+        padding-left: 40px;
+    }
+    .makes-calisto-item {
+        gap: 20px;
+    }
+    .makes-calisto-item .item-num {
+        font-size: 54px;
+        min-width: 70px;
+    }
+    .across-grid {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 40px 0 0;
+        row-gap: 30px;
+    }
+    .across-item:nth-child(4) {
+        border-right: none;
+    }
+}
+@media (max-width: 991px) {
+    .melt-fidelity-content .title {
+        margin: 20px 0 20px;
+    }
+    .makes-calisto {
+        padding: 50px 0 50px;
+    }
+    .makes-calisto-box {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .makes-calisto-content {
+        width: 100%;
+    }
+    .makes-calisto-right {
+        padding-left: 0;
+        width: 100%;
+    }
+    .across-different {
+        padding: 50px 0 50px;
+    }
+    .testimonial-section {
+        padding: 50px 0 50px;
+    }
+    .testimonial-content p br {
+        display: none;
+    }
+    .testimonial-content p {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
+@media (max-width: 767px) {
+    .makes-calisto-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px 0 20px;
+    }
+    .makes-calisto-item .item-num {
+        font-size: 44px;
+        min-width: 60px;
+    }
+    .across-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 30px 0 0;
+        row-gap: 30px;
+    }
+    .across-item h4 {
+        font-size: 16px;
+    }
+    .makes-calisto-item-content h3 {
+        font-size: 22px;
+        line-height: 24px;
+    }
+    .across-item:nth-child(2) , .across-item:nth-child(6) {
+        border-right: none;
+    }
+    .testimonial-content p {
+        font-size: 24px;
+        line-height: 32px;
+        margin: 0 0 20px;
+    }
+    .testimonial-content small {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+}
+
+/* Calisto Moments Page Css End */
