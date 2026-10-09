@@ -646,6 +646,7 @@ ul.dropdown-menu > .nav-item > a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-right: 30px;
 }
 
 .following-agencies {
